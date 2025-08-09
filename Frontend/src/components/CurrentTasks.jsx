@@ -15,7 +15,7 @@ const CurrentTasks = ({ task }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/notes/update-task/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/update-task/${id}`,
         {
           method: "PATCH",
         }

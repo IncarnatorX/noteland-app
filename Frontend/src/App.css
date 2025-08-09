@@ -925,6 +925,7 @@ body {
 
   .note-title {
     color: #ec407a;
+    align-self: center;
   }
 
   .separator {

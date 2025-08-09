@@ -20,7 +20,7 @@ const NewNote = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/api/notes/create-note",
+        `${import.meta.env.VITE_BACKEND_URL}/create-note`,
         {
           method: "POST",
           headers: {
@@ -49,6 +49,7 @@ const NewNote = () => {
   function handleCancelNoteButton() {
     setNewNote(false);
     setPlaceholder(true);
+    toast.info("Note cancelled.");
   }
   return (
     <>

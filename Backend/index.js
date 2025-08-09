@@ -11,7 +11,7 @@ const app = express();
 app.use(
   cors({
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    origin: "http://localhost:5173",
+    origin: [process.env.FRONTEND_URL, process.env.LOCALHOST],
   })
 );
 await createTables();

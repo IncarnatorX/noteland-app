@@ -18,7 +18,9 @@ const NoteView = () => {
   async function handleDeleteNote() {
     try {
       const response = await fetch(
-        `http://localhost:8080/api/notes/delete-note/${currentSelectedNote.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/delete-note/${
+          currentSelectedNote.id
+        }`,
         {
           method: "DELETE",
         }

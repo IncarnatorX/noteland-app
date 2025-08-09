@@ -51,7 +51,9 @@ const TaskCreator = ({ openTaskDialog, setOpenTaskDialog }) => {
 
     try {
       const response = await fetch(
-        `http://localhost:8080/api/notes/create-task/${currentSelectedNote.id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/create-task/${
+          currentSelectedNote.id
+        }`,
         {
           method: "POST",
           headers: {

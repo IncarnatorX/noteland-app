@@ -16,7 +16,9 @@ function App() {
 
   useEffect(() => {
     async function fetchAllNotes() {
-      const response = await fetch("http://localhost:8080/api/notes/all-notes");
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/all-notes`
+      );
 
       if (response.status === 200) {
         const data = await response.json();
