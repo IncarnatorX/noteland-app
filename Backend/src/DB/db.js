@@ -1,7 +1,10 @@
-import pg from "pg";
+// import pg from "pg";
+import pkg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
+
+const { Pool } = pkg;
 
 // LOCAL DATABASE CONFIG
 // const db = new pg.Client({
@@ -13,9 +16,20 @@ dotenv.config();
 // });
 
 // NEON DB CONFIG
-const db = new pg.Client({
+// const db = new pg.Client({
+//   connectionString: process.env.NOEN_PG_DATABASE_URL,
+//   ssl: { rejectUnauthorized: false }, // This is required for neon
+// });
+
+const db = new Pool({
   connectionString: process.env.NOEN_PG_DATABASE_URL,
-  ssl: { rejectUnauthorized: false }, // This is required for neon
+  ssl: { rejectUnauthorized: false },
 });
 
+db.on("error", (err) => console.error("DB Connection error:", err));
+
 export default db;
+
+setInterval(() => {
+  db.query("SELECT 1").catch((err) => console.error("Keep-alive failed", err));
+}, 300000);
