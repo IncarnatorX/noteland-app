@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 const options = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "Strict",
+  sameSite: "None",
 };
 
 const registerController = async (req, res) => {
