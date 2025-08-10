@@ -1,26 +1,28 @@
 import { useContext, useRef } from "react";
 import { NotesContext } from "../context/NotesContext.js";
+import { toast } from "react-toastify";
 
 const Sidebar = () => {
   const {
+    user,
+    setUser,
+    setOpenAuthComponent,
     setNewNote,
     setPlaceholder,
     allNotes,
+    setAllNotes,
     setNoteView,
     setCurrentSelectedNote,
     setCurrentSelectedNoteID,
   } = useContext(NotesContext);
+
   const notesContainerRef = useRef(null);
 
-  const handleNewNoteButton = () => {
-    setNewNote(true);
-    setPlaceholder(false);
-    setNoteView(false);
-    const { current } = notesContainerRef;
-    if (current.style.display === "flex") {
-      current.style.display = "none";
-    }
-  };
+  // const handleNewNoteButton = () => {
+  //   setNewNote(true);
+  //   setPlaceholder(false);
+  //   setNoteView(false);
+  // };
 
   function goHome() {
     setNewNote(false);
@@ -42,6 +44,34 @@ const Sidebar = () => {
     handleNotesContainer();
   };
 
+  async function handleUserLogOut() {
+    try {
+      const url = `${import.meta.env.VITE_BACKEND_URL}/auth/logout`;
+
+      const response = await fetch(url, {
+        method: "POST",
+        credentials: "include",
+      });
+
+      if (!response.ok) {
+        throw new Error("Error in fetch request");
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success(data.message);
+        setUser(null);
+        setAllNotes([]);
+        setNoteView(false);
+        setPlaceholder(true);
+      }
+    } catch (error) {
+      console.error("Error occurred in handleUserLogOut:", error);
+      toast.error("Error while logging out...");
+    }
+  }
+
   return (
     <section className="sidebar">
       <div className="logo">
@@ -57,6 +87,7 @@ const Sidebar = () => {
 
       <div className="notes-container" ref={notesContainerRef}>
         {allNotes &&
+          user &&
           allNotes.map((note) => {
             return (
               <div
@@ -71,10 +102,15 @@ const Sidebar = () => {
             );
           })}
       </div>
-
-      <button className="new-note-btn" onClick={handleNewNoteButton}>
-        New Note
-      </button>
+      {user ? (
+        <button className="auth-btn" onClick={handleUserLogOut}>
+          Logout
+        </button>
+      ) : (
+        <button className="auth-btn" onClick={() => setOpenAuthComponent(true)}>
+          Login
+        </button>
+      )}
     </section>
   );
 };

@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { NotesContext } from "./context/NotesContext";
 import MainSection from "./components/MainSection";
 import Sidebar from "./components/Sidebar";
-import { NotesContext } from "./context/NotesContext";
-import "./App.css";
+import AuthComponent from "./components/AuthComponent";
+import NewNoteIcon from "./components/NewNoteIcon";
+// import "./App.css";
+import "./styles/mobile.css";
+import "./styles/tab.css";
+import "./styles/desktop.css";
 
 function App() {
+  const [user, setUser] = useState(null);
+
   const [allNotes, setAllNotes] = useState([]);
   const [refreshNotes, setRefreshNotes] = useState(false);
 
@@ -14,16 +21,23 @@ function App() {
   const [currentSelectedNoteID, setCurrentSelectedNoteID] = useState(0);
   const [noteView, setNoteView] = useState(false);
 
+  const [openAuthComponent, setOpenAuthComponent] = useState(false);
+
+  const authComponentRef = useRef(null);
+
   useEffect(() => {
     async function fetchAllNotes() {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/all-notes`
+        `${import.meta.env.VITE_BACKEND_URL}/notes/get-user-notes`,
+        {
+          credentials: "include",
+        }
       );
 
       if (response.status === 200) {
         const data = await response.json();
-        const { payload } = data;
-        setAllNotes(payload);
+        const { notes } = data;
+        setAllNotes(notes);
       } else {
         setAllNotes([]);
       }
@@ -31,6 +45,26 @@ function App() {
 
     fetchAllNotes();
   }, [refreshNotes]);
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/auth/get-user`,
+          { method: "GET", credentials: "include" }
+        );
+        const data = await response.json();
+
+        if (!data.success) {
+          setUser(null);
+        }
+
+        setUser(data.user);
+      } catch (error) {
+        console.error("Error fetching user data: ", error);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     if (currentSelectedNoteID) {
@@ -43,6 +77,11 @@ function App() {
   return (
     <NotesContext.Provider
       value={{
+        user,
+        setUser,
+        openAuthComponent,
+        setOpenAuthComponent,
+        authComponentRef,
         allNotes,
         setAllNotes,
         placeholder,
@@ -62,6 +101,8 @@ function App() {
       <div className="app">
         <Sidebar />
         <MainSection newNote={newNote} placeholder={placeholder} />
+        <AuthComponent />
+        {user && !noteView && !newNote && <NewNoteIcon />}
       </div>
     </NotesContext.Provider>
   );

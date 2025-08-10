@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { NotesContext } from "../context/NotesContext";
 
 const Placeholder = () => {
-  const { allNotes } = useContext(NotesContext);
+  const { allNotes, user } = useContext(NotesContext);
 
   return (
     <div className="placeholder">
@@ -12,7 +12,11 @@ const Placeholder = () => {
       ) : (
         <>
           <h3>NO NOTES FOUND</h3>
-          <p>ADD SOME NOTES BY CLICKING New Note FROM THE LEFT.</p>
+          {user ? (
+            <p>ADD SOME NOTES BY CLICKING New Note FROM THE LEFT.</p>
+          ) : (
+            <p>Login to add notes.</p>
+          )}
         </>
       )}
     </div>

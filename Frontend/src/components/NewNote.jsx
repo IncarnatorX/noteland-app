@@ -20,13 +20,14 @@ const NewNote = () => {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/create-note`,
+        `${import.meta.env.VITE_BACKEND_URL}/notes/create-note`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(noteData),
+          credentials: "include",
         }
       );
 
@@ -52,35 +53,33 @@ const NewNote = () => {
     toast.info("Note cancelled.");
   }
   return (
-    <>
-      <form className="new-note" onSubmit={handleCreateNewNote}>
-        <input
-          type="text"
-          id="input-title"
-          placeholder="Note Title"
-          name="title"
-        />
-        <textarea
-          id="input-content"
-          rows="10"
-          cols="30"
-          placeholder="Note description"
-          name="content"
-        ></textarea>
-        <div className="btns">
-          <button type="submit" className="create-note">
-            Create Note
-          </button>
-          <button
-            type="button"
-            className="cancel-note"
-            onClick={handleCancelNoteButton}
-          >
-            Cancel Note
-          </button>
-        </div>
-      </form>
-    </>
+    <form className="new-note" onSubmit={handleCreateNewNote}>
+      <input
+        type="text"
+        id="input-title"
+        placeholder="Note Title"
+        name="title"
+      />
+      <textarea
+        id="input-content"
+        rows="10"
+        cols="30"
+        placeholder="Note description"
+        name="content"
+      ></textarea>
+      <div className="btns">
+        <button type="submit" className="create-note">
+          Create Note
+        </button>
+        <button
+          type="button"
+          className="cancel-note"
+          onClick={handleCancelNoteButton}
+        >
+          Cancel Note
+        </button>
+      </div>
+    </form>
   );
 };
 

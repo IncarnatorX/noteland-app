@@ -51,7 +51,7 @@ const TaskCreator = ({ openTaskDialog, setOpenTaskDialog }) => {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/create-task/${
+        `${import.meta.env.VITE_BACKEND_URL}/notes/create-task/${
           currentSelectedNote.id
         }`,
         {
@@ -60,6 +60,7 @@ const TaskCreator = ({ openTaskDialog, setOpenTaskDialog }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(taskData),
+          credentials: "include",
         }
       );
 
@@ -76,27 +77,25 @@ const TaskCreator = ({ openTaskDialog, setOpenTaskDialog }) => {
   };
 
   return (
-    <>
-      <dialog ref={dialogRef} className="task-creator-dialog">
-        <form
-          method="dialog"
-          className="task-creator"
-          onSubmit={handleCreateTaskSubmission}
-        >
-          <h3>Enter new Task:</h3>
-          <input
-            type="text"
-            placeholder="Task Name"
-            id="task-input"
-            name="task_name"
-            ref={taskRef}
-          />
-          <button className="create-task-btn" type="submit">
-            Create Task
-          </button>
-        </form>
-      </dialog>
-    </>
+    <dialog ref={dialogRef} className="task-creator-dialog">
+      <form
+        method="dialog"
+        className="task-creator"
+        onSubmit={handleCreateTaskSubmission}
+      >
+        <h3>Enter new Task:</h3>
+        <input
+          type="text"
+          placeholder="Task Name"
+          id="task-input"
+          name="task_name"
+          ref={taskRef}
+        />
+        <button className="create-task-btn" type="submit">
+          Create Task
+        </button>
+      </form>
+    </dialog>
   );
 };
 

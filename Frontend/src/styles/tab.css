@@ -1,0 +1,516 @@
+@media screen and (min-width: 520px) and (max-width: 920px) {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Ubuntu";
+  }
+
+  .app {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .new-note-icon {
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      scale: 1.1;
+      transition: scale 300ms linear;
+    }
+  }
+
+  .plus-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .auth-component-dialog {
+    align-content: center;
+    margin: auto;
+    border: none;
+    border-radius: 1rem;
+    width: 70%;
+  }
+
+  .auth-component-dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .auth-form {
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 80%;
+  }
+
+  .auth-form-input {
+    width: 100%;
+    outline: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #000;
+    font-size: 1rem;
+    &:user-valid {
+      border-color: #26a69a;
+    }
+    &:user-invalid {
+      border-color: rgb(218, 15, 15);
+    }
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2px;
+  }
+
+  .field-group-label {
+    font-size: 0.9rem;
+  }
+
+  .password-err-msg {
+    font-size: 0.85rem;
+    color: rgb(218, 15, 15);
+  }
+
+  .password-checkbox {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.3rem;
+    cursor: pointer;
+  }
+
+  .show-password-text {
+    font-size: 1rem;
+  }
+
+  .here-text {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #0071e3;
+  }
+
+  .login-btn {
+    border: none;
+    background-color: #0071e3;
+    font-size: 1em;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+  }
+
+  .sidebar {
+    display: grid;
+    width: 30%;
+    height: 100vh;
+    grid-template-columns: 100%;
+    grid-template-rows: 10% 80% 10%;
+    grid-template-areas:
+      "logo"
+      "notes-container"
+      "auth-btn";
+    padding: 1rem 0;
+    background-color: #26a69a;
+    text-align: center;
+  }
+
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    grid-area: logo;
+    cursor: pointer;
+  }
+
+  .logo img {
+    width: 40px;
+    height: 40px;
+    padding-left: 0.3rem;
+  }
+
+  .menu-icon {
+    display: none;
+  }
+
+  .logo h1 {
+    font-weight: 900;
+    font-size: 1.1rem;
+  }
+
+  .logo h1:hover {
+    text-decoration: underline;
+  }
+
+  .notes-container {
+    grid-area: notes-container;
+    margin: 1rem 0;
+    overflow-y: auto;
+    display: block;
+  }
+
+  .notes-container::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .notes-container::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+    border-radius: 6px;
+  }
+
+  .notes-container::-webkit-scrollbar-thumb {
+    background: #ef5350; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the scrollbar thumb */
+  }
+
+  .notes-container::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+  }
+
+  .note {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #fff;
+    margin: 0.8rem;
+    padding: 0.5rem;
+    border-radius: 0.7rem;
+    cursor: pointer;
+  }
+
+  .note-title {
+    color: #ec407a;
+  }
+
+  .note-content {
+    max-width: 170px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .auth-btn {
+    width: 90%;
+    justify-self: center;
+    align-self: center;
+    border: none;
+    padding: 1rem 0.5rem;
+    margin-inline: 0.3rem;
+    border-radius: 0.7rem;
+    outline: none;
+    cursor: pointer;
+    background-color: #80deea;
+    font-weight: 500;
+    font-size: 1rem;
+    grid-area: auth-btn;
+  }
+
+  /* MAIN SECTION */
+  .main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-basis: 80%;
+    background-color: #5e35b1;
+    position: relative;
+  }
+
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    height: 100vh;
+  }
+
+  .placeholder img {
+    width: 350px;
+    height: 350px;
+  }
+
+  .placeholder h3,
+  .placeholder p {
+    color: white;
+  }
+
+  .new-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    background-color: #fff;
+    width: 80%;
+    border-radius: 0.7rem;
+    padding: 1rem;
+  }
+
+  #input-title,
+  #input-content {
+    border: none;
+    border-bottom: 3px solid black;
+    padding: 1rem;
+    outline: none;
+    width: 60%;
+    font-size: 1.2rem;
+  }
+
+  #input-content {
+    resize: none;
+  }
+
+  .btns {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .btns button {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.7rem;
+    cursor: pointer;
+  }
+
+  .create-note {
+    background-color: #42a5f5;
+  }
+
+  .cancel-note {
+    background-color: #ef5350;
+  }
+
+  .note-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100%;
+  }
+
+  .note-view-heading {
+    height: 76px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    h2 {
+      font-size: 1.1rem;
+      width: fit-content;
+      color: #fff;
+    }
+  }
+
+  .note-view-btns {
+    display: flex;
+    align-items: center;
+  }
+
+  .note-view-btns button {
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.7rem;
+    margin: 0.5rem;
+  }
+
+  .new-task {
+    background-color: #42a5f5;
+    font-size: 1rem;
+  }
+
+  .save-note {
+    background-color: #26a69a;
+    color: #fff;
+    font-size: 1rem;
+  }
+
+  .delete-note {
+    background-color: #ef5350;
+    font-size: 1rem;
+  }
+
+  .note-view-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 0.7rem;
+    padding: 1rem;
+    margin: 1rem;
+    height: calc(100vh - 76px);
+  }
+
+  .note-content-span {
+    padding: 0.5rem 0;
+    font-weight: bolder;
+  }
+
+  .task-creator-dialog[open] {
+    align-self: center;
+    margin-inline: auto;
+    border: none;
+    border-radius: 1rem;
+  }
+
+  .task-creator-dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .task-creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  #task-input {
+    border: none;
+    outline: none;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 0.7rem;
+    width: 70%;
+  }
+
+  .create-task-btn {
+    border: none;
+    cursor: pointer;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.7rem;
+    background-color: #42a5f5;
+  }
+
+  .task-manager {
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+  }
+
+  .task-manager::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .task-manager::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Color of the scrollbar track */
+    border-radius: 6px;
+  }
+
+  .task-manager::-webkit-scrollbar-thumb {
+    background: #ef5350; /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners of the scrollbar thumb */
+  }
+
+  .task-manager::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Color of the scrollbar thumb on hover */
+  }
+
+  .task-list-title {
+    color: #5e35b1;
+    font-weight: 600;
+  }
+
+  .ongoing-tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
+
+  .curr-task {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    gap: 0.5rem;
+  }
+
+  .checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1.5px solid #c09494;
+    padding: 0.2rem;
+    position: relative;
+  }
+
+  .checkbox:checked::before {
+    content: "";
+    position: absolute;
+    top: 10%; /* Adjust the position to center the inner circle */
+    left: 10%;
+    width: 80%; /* Size to leave some gap */
+    height: 80%;
+    background-color: #5e35b1;
+    border-radius: 50%;
+  }
+
+  label {
+    font-size: 1.2rem;
+  }
+
+  .hr-tag {
+    width: 100%;
+    height: 0.2rem;
+    background-color: #3e2723;
+    border-radius: 0.7rem;
+    outline: none;
+    border: none;
+  }
+
+  .completed-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .finish-task {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  .span-check::before {
+    color: green;
+    font-weight: 900;
+    font-size: 1rem;
+    content: "\2714";
+  }
+}

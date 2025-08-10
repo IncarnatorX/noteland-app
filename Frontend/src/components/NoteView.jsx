@@ -18,11 +18,12 @@ const NoteView = () => {
   async function handleDeleteNote() {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/delete-note/${
+        `${import.meta.env.VITE_BACKEND_URL}/notes/delete-note/${
           currentSelectedNote.id
         }`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
 
@@ -61,7 +62,7 @@ const NoteView = () => {
       <div className="note-view-content">
         <span className="note-content-span">NOTE CONTENT: </span>
         <p>{currentSelectedNote.content}</p>
-        {currentSelectedNote?.tasks.length > 0 && (
+        {currentSelectedNote?.tasks?.length > 0 && (
           <TaskManager tasks={currentSelectedNote.tasks} />
         )}
       </div>

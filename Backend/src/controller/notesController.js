@@ -1,7 +1,57 @@
 import db from "../DB/db.js";
 
+const getAllUserNotes = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    if (!userId) {
+      return res.status(403).json({
+        message: "Unauthorized. Unable to pull your notes.",
+        success: false,
+      });
+    }
+
+    const result = await db.query(
+      `
+      SELECT notes.id, 
+        notes.title, 
+        notes.content, 
+        notes.user_id, 
+        COALESCE(json_agg(tasks) FILTER (WHERE tasks.id IS NOT NULL), '[]') AS tasks
+      FROM notes 
+      LEFT JOIN tasks ON notes.id = tasks.note_id
+      WHERE notes.user_id = $1
+      GROUP BY notes.id 
+      `,
+      [userId]
+    );
+
+    if (result.rowCount === 0) {
+      return res.status(400).json({ message: "No notes found." });
+    }
+
+    return res
+      .status(200)
+      .json({ message: "All notes fetched successfully", notes: result.rows });
+  } catch (error) {
+    console.error("Error in getAllUserNotes controller: ", error.message);
+    return res
+      .status(500)
+      .json({ message: "Something wen't wrong at our end. Please try again." });
+  }
+};
+
 const createNote = async (req, res) => {
   try {
+    const userId = req.user.id;
+
+    if (!userId) {
+      return res.status(403).json({
+        message: "Unauthorized. You're not allowed to create a note.",
+        success: false,
+      });
+    }
+
     const { title, content } = req.body;
 
     if (!title || !content) {
@@ -11,8 +61,8 @@ const createNote = async (req, res) => {
     }
 
     const result = await db.query(
-      "INSERT INTO notes (title, content) VALUES ($1, $2) RETURNING *",
-      [title, content]
+      "INSERT INTO notes (title, content, user_id) VALUES ($1, $2, $3) RETURNING *",
+      [title, content, userId]
     );
 
     if (result.rows.length === 0) {
@@ -37,6 +87,15 @@ const createTask = async (req, res) => {
   try {
     const { task_name } = req.body;
     const { note_id } = req.params;
+
+    const userId = req.user.id;
+
+    if (!userId) {
+      return res.status(403).json({
+        message: "Unauthorized. You're not allowed to create a task.",
+        success: false,
+      });
+    }
 
     if (!note_id) {
       return res
@@ -72,6 +131,15 @@ const createTask = async (req, res) => {
 
 const updateTask = async (req, res) => {
   try {
+    const userId = req.user.id;
+
+    if (!userId) {
+      return res.status(403).json({
+        message: "Unauthorized. You're not allowed to update the note.",
+        success: false,
+      });
+    }
+
     const { id } = req.params;
 
     if (!id) {
@@ -132,6 +200,15 @@ const getAllNotes = async (req, res) => {
 
 const deleteNote = async (req, res) => {
   try {
+    const userId = req.user.id;
+
+    if (!userId) {
+      return res.status(403).json({
+        message: "Unauthorized. You're not allowed to delete the note.",
+        success: false,
+      });
+    }
+
     const { id } = req.params;
 
     if (!id) {
@@ -163,4 +240,11 @@ const deleteNote = async (req, res) => {
   }
 };
 
-export { createNote, getAllNotes, createTask, updateTask, deleteNote };
+export {
+  createNote,
+  getAllNotes,
+  getAllUserNotes,
+  createTask,
+  updateTask,
+  deleteNote,
+};

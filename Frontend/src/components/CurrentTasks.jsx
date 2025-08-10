@@ -15,9 +15,10 @@ const CurrentTasks = ({ task }) => {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/update-task/${id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/notes/update-task/${id}`,
         {
           method: "PATCH",
+          credentials: "include",
         }
       );
 
