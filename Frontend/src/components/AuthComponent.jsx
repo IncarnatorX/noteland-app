@@ -49,8 +49,11 @@ const AuthComponent = () => {
 
       if (data.success) {
         toast.success(data.message);
-        setUser(data.user);
         setRefreshNotes((prev) => !prev);
+      }
+
+      if (authKind === "login") {
+        setUser(data.user);
       }
     } catch (error) {
       console.error("Error occurred when submitting login request:", error);
