@@ -9,7 +9,7 @@ const TaskManager = ({ tasks }) => {
 
       {/* ONGOING TASKS */}
       <p style={{ opacity: "0.5" }}>Your Pending Tasks</p>
-      {tasks.length > 0 &&
+      {tasks?.length > 0 &&
         tasks.map(
           (task) =>
             !task?.completed && (
@@ -23,7 +23,7 @@ const TaskManager = ({ tasks }) => {
 
       {/* COMPLETED TASKS */}
       <p style={{ opacity: "0.5" }}>Completed Tasks</p>
-      {tasks.length > 0 &&
+      {tasks?.length > 0 &&
         tasks.map(
           (task) =>
             task?.completed && (

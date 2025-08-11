@@ -56,7 +56,7 @@ const loginController = async function (req, res) {
       [email]
     );
 
-    if (existingUser.rows.length === 0) {
+    if (existingUser?.rows?.length === 0) {
       return res
         .status(401)
         .json({ message: "No such user found", success: false });

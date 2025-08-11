@@ -65,7 +65,7 @@ const createNote = async (req, res) => {
       [title, content, userId]
     );
 
-    if (result.rows.length === 0) {
+    if (result?.rows?.length === 0) {
       return res.status(404).json({
         message: "Unable to save the note in our database. Please try again.",
       });
@@ -114,7 +114,7 @@ const createTask = async (req, res) => {
       [note_id, task_name]
     );
 
-    if (result.rows.length === 0) {
+    if (result?.rows?.length === 0) {
       return res.status(404).json({
         message: "Unable to save the task in our database. Please try again.",
       });
@@ -182,7 +182,7 @@ const getAllNotes = async (req, res) => {
       GROUP BY NOTES.id
       `);
 
-    if (allNotes.rows.length === 0) {
+    if (allNotes?.rows?.length === 0) {
       return res.status(204).json({ message: "No Notes available." });
     }
 

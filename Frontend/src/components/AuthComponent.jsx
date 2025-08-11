@@ -133,7 +133,7 @@ const AuthComponent = () => {
             onChange={(e) => setPassword(e.currentTarget.value)}
           />
         </div>
-        {password.length > 1 && password.length < 8 && (
+        {password?.length > 1 && password?.length < 8 && (
           <span className="password-err-msg">
             Password must be greater than 8 characters!
           </span>

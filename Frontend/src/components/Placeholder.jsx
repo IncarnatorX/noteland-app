@@ -7,7 +7,7 @@ const Placeholder = () => {
   return (
     <div className="placeholder">
       <img src="./folder.png" alt="Folder Image" />
-      {allNotes.length > 0 ? (
+      {allNotes?.length > 0 ? (
         <h3>PICK A NOTE TO VIEW</h3>
       ) : (
         <>
