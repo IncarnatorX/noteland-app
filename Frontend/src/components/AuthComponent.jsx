@@ -8,6 +8,7 @@ const AuthComponent = () => {
     setOpenAuthComponent,
     authComponentRef,
     setUser,
+    setUserLoggedIn,
     setRefreshNotes,
   } = useContext(NotesContext);
 
@@ -54,6 +55,7 @@ const AuthComponent = () => {
 
       if (authKind === "login") {
         setUser(data.user);
+        setUserLoggedIn(true);
       }
     } catch (error) {
       console.error("Error occurred when submitting login request:", error);

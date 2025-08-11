@@ -6,6 +6,7 @@ const Sidebar = () => {
   const {
     user,
     setUser,
+    setUserLoggedIn,
     setOpenAuthComponent,
     setNewNote,
     setPlaceholder,
@@ -62,6 +63,7 @@ const Sidebar = () => {
       if (data.success) {
         toast.success(data.message);
         setUser(null);
+        setUserLoggedIn(false);
         setAllNotes([]);
         setNoteView(false);
         setPlaceholder(true);

@@ -11,6 +11,7 @@ import "./styles/desktop.css";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
 
   const [allNotes, setAllNotes] = useState([]);
   const [refreshNotes, setRefreshNotes] = useState(false);
@@ -47,6 +48,8 @@ function App() {
   }, [refreshNotes]);
 
   useEffect(() => {
+    if (!userLoggedIn) return;
+
     (async function () {
       try {
         const response = await fetch(
@@ -64,12 +67,12 @@ function App() {
         console.error("Error fetching user data: ", error);
       }
     })();
-  }, []);
+  }, [userLoggedIn]);
 
   useEffect(() => {
     if (currentSelectedNoteID) {
       setCurrentSelectedNote(() =>
-        allNotes.find((note) => note.id === currentSelectedNoteID)
+        allNotes?.find((note) => note.id === currentSelectedNoteID)
       );
     }
   }, [allNotes, currentSelectedNoteID]);
@@ -79,6 +82,8 @@ function App() {
       value={{
         user,
         setUser,
+        userLoggedIn,
+        setUserLoggedIn,
         openAuthComponent,
         setOpenAuthComponent,
         authComponentRef,
