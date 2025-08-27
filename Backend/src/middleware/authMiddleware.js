@@ -3,7 +3,7 @@ import db from "../DB/db.js";
 
 const verifyJWT = async (req, res, next) => {
   try {
-    const incomingToken = req.cookies.token;
+    const incomingToken = req.cookies.noteland_token;
 
     if (!incomingToken) {
       return res

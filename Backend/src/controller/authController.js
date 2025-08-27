@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 const options = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  sameSite: "None",
+  sameSite: process.env.NODE_ENV === "production" && "None", // sameSite: None requires secure to be true
 };
 
 const registerController = async (req, res) => {
@@ -104,11 +104,18 @@ const loginController = async function (req, res) {
 
         return res
           .status(200)
-          .cookie("token", token, options)
+          .cookie("noteland_token", token, options)
           .json({
             message: "Login Successful",
             success: true,
-            user: { id, name, email: emailAddress, created_at, updated_at },
+            user: {
+              id,
+              name,
+              email: emailAddress,
+              is_logged_in: user.is_logged_in,
+              created_at,
+              updated_at,
+            },
           });
       }
     } else {
@@ -145,7 +152,7 @@ const logoutController = async function (req, res) {
 
     return res
       .status(200)
-      .clearCookie("token", options)
+      .clearCookie("noteland_token", options)
       .json({ message: "Logout successful", success: true });
   } catch (error) {
     console.error("Error in logoutController controller: ", error);
@@ -159,8 +166,6 @@ const logoutController = async function (req, res) {
 const userController = async function (req, res) {
   try {
     const userId = req.user.id;
-
-    console.log("ID", userId);
 
     if (!userId) {
       return res.status(404).json({ message: "No user found", success: false });

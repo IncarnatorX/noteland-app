@@ -11,9 +11,11 @@ const Placeholder = () => {
         <h3>PICK A NOTE TO VIEW</h3>
       ) : (
         <>
-          <h3>NO NOTES FOUND</h3>
           {user ? (
-            <p>ADD SOME NOTES BY CLICKING New Note FROM THE LEFT.</p>
+            <>
+              <h3>NO NOTES FOUND</h3>
+              <p>ADD SOME NOTES BY CLICKING New Note FROM THE LEFT.</p>
+            </>
           ) : (
             <p>Login to add notes.</p>
           )}

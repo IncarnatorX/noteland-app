@@ -67,6 +67,7 @@ const Sidebar = () => {
         setAllNotes([]);
         setNoteView(false);
         setPlaceholder(true);
+        localStorage.removeItem("noteland_user");
       }
     } catch (error) {
       console.error("Error occurred in handleUserLogOut:", error);

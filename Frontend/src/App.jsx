@@ -27,6 +27,8 @@ function App() {
   const authComponentRef = useRef(null);
 
   useEffect(() => {
+    if (!userLoggedIn) return;
+
     async function fetchAllNotes() {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/notes/get-user-notes`,
@@ -45,10 +47,21 @@ function App() {
     }
 
     fetchAllNotes();
-  }, [refreshNotes]);
+  }, [refreshNotes, userLoggedIn]);
 
   useEffect(() => {
-    if (!userLoggedIn) return;
+    if (!userLoggedIn) {
+      const notelandUser = localStorage.getItem("noteland_user");
+      if (!notelandUser) {
+        setUser(null);
+        setUserLoggedIn(false);
+        return;
+      } else {
+        const parsedUser = JSON.parse(notelandUser);
+        setUser(parsedUser);
+        setUserLoggedIn(true);
+      }
+    }
 
     (async function () {
       try {
