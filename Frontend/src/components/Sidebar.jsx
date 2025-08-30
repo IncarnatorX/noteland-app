@@ -96,7 +96,7 @@ const Sidebar = () => {
 
       <div className="notes-container" ref={notesContainerRef}>
         <p>Notes length: {allNotes?.length}</p>
-        <p>User logged in: {userLoggedIn}</p>
+        <p>User logged in: {userLoggedIn ? "YES" : "NO"}</p>
         {allNotes &&
           user &&
           allNotes.map((note) => {
