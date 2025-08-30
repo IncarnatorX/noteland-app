@@ -8,6 +8,8 @@ const options = {
   sameSite: process.env.NODE_ENV === "production" && "None", // sameSite: None requires secure to be true
 };
 
+console.log("OPTIONS", options);
+
 const registerController = async (req, res) => {
   try {
     const { name, email, password } = req.body;
