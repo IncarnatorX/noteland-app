@@ -19,6 +19,8 @@ const Sidebar = () => {
 
   const notesContainerRef = useRef(null);
 
+  console.log("allNotes", allNotes);
+
   // const handleNewNoteButton = () => {
   //   setNewNote(true);
   //   setPlaceholder(false);

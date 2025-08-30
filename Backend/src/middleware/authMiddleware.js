@@ -3,7 +3,10 @@ import db from "../DB/db.js";
 
 const verifyJWT = async (req, res, next) => {
   try {
-    const incomingToken = req.cookies.noteland_token;
+    const incomingToken =
+      req.cookies.noteland_token ||
+      req.body.noteland_token ||
+      req.header("Authorization")?.replace("Bearer ", "");
 
     console.log("token", incomingToken);
 
