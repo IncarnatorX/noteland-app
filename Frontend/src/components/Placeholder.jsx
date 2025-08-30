@@ -14,6 +14,7 @@ const Placeholder = () => {
           {user ? (
             <>
               <h3>NO NOTES FOUND</h3>
+              <p>Token: {user.token}</p>
               <p>ADD SOME NOTES BY CLICKING New Note FROM THE LEFT.</p>
             </>
           ) : (

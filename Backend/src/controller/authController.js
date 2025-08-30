@@ -5,8 +5,7 @@ import jwt from "jsonwebtoken";
 const options = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  // sameSite: process.env.NODE_ENV === "production" && "None", // sameSite: None requires secure to be true
-  sameSite: "Lax",
+  sameSite: process.env.NODE_ENV === "production" && "None", // sameSite: None requires secure to be true
 };
 
 const registerController = async (req, res) => {
@@ -110,6 +109,7 @@ const loginController = async function (req, res) {
             message: "Login Successful",
             success: true,
             user: {
+              token,
               id,
               name,
               email: emailAddress,

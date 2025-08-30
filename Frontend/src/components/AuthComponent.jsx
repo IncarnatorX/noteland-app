@@ -64,6 +64,7 @@ const AuthComponent = () => {
       }
     } catch (error) {
       console.error("Error occurred when submitting login request:", error);
+      setOpenAuthComponent(false);
       toast.error(error.message ?? "Login failed. Please try again...");
     } finally {
       event.target.reset();
