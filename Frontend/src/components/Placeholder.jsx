@@ -13,9 +13,10 @@ const Placeholder = () => {
         <>
           {user ? (
             <>
+              <p>Notes length: {allNotes?.length}</p>
+              <p>{JSON.stringify(allNotes)}</p>
               <h3>NO NOTES FOUND</h3>
-              <p>Token: {user.token}</p>
-              <p>ADD SOME NOTES BY CLICKING New Note FROM THE LEFT.</p>
+              <p>ADD SOME NOTES BY CLICKING New Note ICON.</p>
             </>
           ) : (
             <p>Login to add notes.</p>

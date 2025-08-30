@@ -109,7 +109,6 @@ const loginController = async function (req, res) {
             message: "Login Successful",
             success: true,
             user: {
-              token,
               id,
               name,
               email: emailAddress,

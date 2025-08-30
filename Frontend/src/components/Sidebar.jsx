@@ -74,7 +74,7 @@ const Sidebar = () => {
       }
     } catch (error) {
       console.error("Error occurred in handleUserLogOut:", error);
-      toast.error("Error while logging out...");
+      toast.error("Error while logging out...", error.message);
     } finally {
       setAuthenticating(false);
     }
@@ -94,6 +94,7 @@ const Sidebar = () => {
       </div>
 
       <div className="notes-container" ref={notesContainerRef}>
+        <p>Notes length: {allNotes?.length}</p>
         {allNotes &&
           user &&
           allNotes.map((note) => {
