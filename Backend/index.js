@@ -5,6 +5,7 @@ import createTables from "./src/DB/createTables.js";
 import notesRouter from "./src/routes/notesRoutes.js";
 import authRouter from "./src/routes/authRoutes.js";
 import cookieParser from "cookie-parser";
+import healthCheckRoute from "./src/routes/healthCheckRoute.js";
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api", healthCheckRoute);
 app.use("/api/auth", authRouter);
 app.use("/api/notes", notesRouter);
 

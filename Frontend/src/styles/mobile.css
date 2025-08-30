@@ -354,6 +354,7 @@
   .new-task {
     background-color: #42a5f5;
     font-size: 1rem;
+    color: #fff;
   }
 
   .save-note {
@@ -365,6 +366,7 @@
   .delete-note {
     background-color: #ef5350;
     font-size: 1rem;
+    color: #fff;
   }
 
   .note-view-div {

@@ -24,6 +24,8 @@ function App() {
 
   const [openAuthComponent, setOpenAuthComponent] = useState(false);
 
+  const [authenticating, setAuthenticating] = useState(false);
+
   const authComponentRef = useRef(null);
 
   useEffect(() => {
@@ -114,6 +116,8 @@ function App() {
         setRefreshNotes,
         currentSelectedNoteID,
         setCurrentSelectedNoteID,
+        authenticating,
+        setAuthenticating,
       }}
     >
       <div className="app">

@@ -8,8 +8,6 @@ const verifyJWT = async (req, res, next) => {
       req.body.noteland_token ||
       req.header("Authorization")?.replace("Bearer ", "");
 
-    console.log("token", incomingToken);
-
     if (!incomingToken) {
       return res
         .status(400)

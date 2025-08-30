@@ -15,11 +15,11 @@ const Sidebar = () => {
     setNoteView,
     setCurrentSelectedNote,
     setCurrentSelectedNoteID,
+    authenticating,
+    setAuthenticating,
   } = useContext(NotesContext);
 
   const notesContainerRef = useRef(null);
-
-  console.log("allNotes", allNotes);
 
   // const handleNewNoteButton = () => {
   //   setNewNote(true);
@@ -48,6 +48,7 @@ const Sidebar = () => {
   };
 
   async function handleUserLogOut() {
+    setAuthenticating(true);
     try {
       const url = `${import.meta.env.VITE_BACKEND_URL}/auth/logout`;
 
@@ -74,6 +75,8 @@ const Sidebar = () => {
     } catch (error) {
       console.error("Error occurred in handleUserLogOut:", error);
       toast.error("Error while logging out...");
+    } finally {
+      setAuthenticating(false);
     }
   }
 
@@ -108,8 +111,12 @@ const Sidebar = () => {
           })}
       </div>
       {user ? (
-        <button className="auth-btn" onClick={handleUserLogOut}>
-          Logout
+        <button
+          className="auth-btn"
+          onClick={handleUserLogOut}
+          disabled={authenticating}
+        >
+          {authenticating ? "Please wait..." : "Logout"}
         </button>
       ) : (
         <button className="auth-btn" onClick={() => setOpenAuthComponent(true)}>

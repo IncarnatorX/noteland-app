@@ -10,6 +10,8 @@ const AuthComponent = () => {
     setUser,
     setUserLoggedIn,
     setRefreshNotes,
+    authenticating,
+    setAuthenticating,
   } = useContext(NotesContext);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +24,8 @@ const AuthComponent = () => {
     event.preventDefault();
 
     const formData = Object.fromEntries(new FormData(event.currentTarget));
+
+    setAuthenticating(true);
 
     try {
       const url = `${import.meta.env.VITE_BACKEND_URL}/auth/${
@@ -63,6 +67,7 @@ const AuthComponent = () => {
       toast.error(error.message ?? "Login failed. Please try again...");
     } finally {
       event.target.reset();
+      setAuthenticating(false);
     }
   }
 
@@ -174,7 +179,14 @@ const AuthComponent = () => {
 
         <input
           type="submit"
-          value={authKind === "login" ? "Login" : "Register"}
+          value={
+            authKind === "login"
+              ? authenticating
+                ? "Authenticating..."
+                : "Login"
+              : "Register"
+          }
+          disabled={authenticating}
           className="login-btn"
         />
       </form>
