@@ -5,6 +5,8 @@ const verifyJWT = async (req, res, next) => {
   try {
     const incomingToken = req.cookies.noteland_token;
 
+    console.log("token", incomingToken);
+
     if (!incomingToken) {
       return res
         .status(400)
