@@ -3,6 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    font-family: inherit;
   }
 
   .app {
@@ -214,7 +215,8 @@
   }
 
   .note-content {
-    max-width: 200px;
+    /* max-width: 200px; */
+    width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
     height: auto;
@@ -360,7 +362,7 @@
     font-size: 1rem;
   }
 
-  .note-view-content {
+  .note-view-div {
     display: flex;
     flex-direction: column;
     background-color: #fff;
@@ -370,9 +372,14 @@
     height: calc(100vh - 76px);
   }
 
-  .note-content-span {
+  .note-view-title {
     padding: 0.5rem 0;
     font-weight: bolder;
+    color: #5e35b1;
+  }
+
+  .note-view-content {
+    padding: 1rem 0;
   }
 
   .task-creator-dialog[open] {
@@ -416,7 +423,7 @@
   }
 
   .task-manager {
-    margin: 1rem;
+    margin: 1rem 0;
     display: flex;
     flex-direction: column;
     gap: 1rem;

@@ -59,9 +59,9 @@ const NoteView = () => {
         </div>
       </div>
       {/* CONTENT DIV */}
-      <div className="note-view-content">
-        <span className="note-content-span">NOTE CONTENT: </span>
-        <p>{currentSelectedNote.content}</p>
+      <div className="note-view-div">
+        <p className="note-view-title">NOTE CONTENT: </p>
+        <p className="note-view-content">{currentSelectedNote.content}</p>
         {currentSelectedNote?.tasks?.length > 0 && (
           <TaskManager tasks={currentSelectedNote.tasks} />
         )}
