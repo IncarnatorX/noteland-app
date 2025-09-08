@@ -295,6 +295,7 @@
 
   #input-content {
     resize: none;
+    white-space: pre-wrap;
   }
 
   .btns {
@@ -380,6 +381,7 @@
 
   .note-view-content {
     padding: 1rem 0;
+    white-space: pre-wrap;
   }
 
   .task-creator-dialog[open] {

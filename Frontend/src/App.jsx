@@ -28,61 +28,50 @@ function App() {
 
   const authComponentRef = useRef(null);
 
-  useEffect(() => {
-    if (!userLoggedIn) return;
-
-    async function fetchAllNotes() {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/notes/get-user-notes`,
-        {
-          credentials: "include",
-        }
-      );
-
-      if (response.status === 200) {
-        const data = await response.json();
-        const { notes } = data;
-        setAllNotes(notes);
-      } else {
-        setAllNotes([]);
-      }
+  async function safeFetch(url, signal) {
+    const res = await fetch(url, { credentials: "include", signal });
+    if (!res.ok) {
+      throw new Error(`Failed request: ${res.status} ${res.statusText}`);
     }
-
-    fetchAllNotes();
-  }, [refreshNotes, userLoggedIn]);
+    return res.json();
+  }
 
   useEffect(() => {
-    if (!userLoggedIn) {
-      const notelandUser = localStorage.getItem("noteland_user");
-      if (!notelandUser) {
-        setUser(null);
-        setUserLoggedIn(false);
-        return;
-      } else {
-        const parsedUser = JSON.parse(notelandUser);
-        setUser(parsedUser);
-        setUserLoggedIn(true);
-      }
-    }
+    const controller = new AbortController();
 
     (async function () {
       try {
-        const response = await fetch(
-          `${import.meta.env.VITE_BACKEND_URL}/auth/get-user`,
-          { method: "GET", credentials: "include" }
-        );
-        const data = await response.json();
+        const [userResponse, userNotesResponse] = await Promise.all([
+          safeFetch(
+            `${import.meta.env.VITE_BACKEND_URL}/auth/get-user`,
+            controller.signal
+          ),
+          safeFetch(
+            `${import.meta.env.VITE_BACKEND_URL}/notes/get-user-notes`,
+            controller.signal
+          ),
+        ]);
 
-        if (!data.success) {
-          setUser(null);
+        if (userResponse.success) {
+          setUser(userResponse.user);
+          setUserLoggedIn(true);
         }
 
-        setUser(data.user);
+        if (userNotesResponse.success) {
+          setAllNotes(userNotesResponse.notes);
+        }
       } catch (error) {
-        console.error("Error fetching user data: ", error);
+        console.error("Error fetching data for the user", error);
+        setUser(null);
+        setUserLoggedIn(false);
+        setAllNotes([]);
       }
     })();
-  }, [userLoggedIn]);
+
+    () => {
+      controller.abort();
+    };
+  }, []);
 
   useEffect(() => {
     if (currentSelectedNoteID) {

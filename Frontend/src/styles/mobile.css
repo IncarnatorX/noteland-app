@@ -250,7 +250,7 @@
     background-color: #5e35b1;
     position: relative;
     padding: 1rem;
-    min-height: calc(100vh - 88px);
+    min-height: calc(100vh - 80px);
   }
 
   .placeholder {
@@ -296,6 +296,7 @@
 
   #input-content {
     resize: none;
+    white-space: pre-wrap;
   }
 
   .btns {
@@ -386,6 +387,7 @@
 
   .note-view-content {
     padding: 1rem 0;
+    white-space: pre-wrap;
   }
 
   .task-creator-dialog[open] {

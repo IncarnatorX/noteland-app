@@ -59,7 +59,6 @@ const AuthComponent = () => {
 
       if (authKind === "login") {
         setUser(data.user);
-        localStorage.setItem("noteland_user", JSON.stringify(data.user));
         setUserLoggedIn(true);
       }
     } catch (error) {

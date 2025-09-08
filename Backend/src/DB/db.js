@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const isLocal = process.env.NODE_ENV === "development";
+
 // const { Pool } = pkg;
 
 // LOCAL DATABASE CONFIG
@@ -13,10 +15,12 @@ const db = new pg.Client({
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
   port: process.env.DB_PORT,
-  ssl: {
-    rejectUnauthorized: false,
-    ca: process.env.AIVEN_CERTIFICATE,
-  },
+  ssl: isLocal
+    ? false
+    : {
+        rejectUnauthorized: false,
+        ca: process.env.AIVEN_CERTIFICATE,
+      },
 });
 
 // NEON DB CONFIG

@@ -30,14 +30,17 @@ const getAllUserNotes = async (req, res) => {
       return res.status(200).json({ message: "No notes found." });
     }
 
-    return res
-      .status(200)
-      .json({ message: "All notes fetched successfully", notes: result.rows });
+    return res.status(200).json({
+      message: "All notes fetched successfully",
+      notes: result.rows,
+      success: true,
+    });
   } catch (error) {
     console.error("Error in getAllUserNotes controller: ", error.message);
-    return res
-      .status(500)
-      .json({ message: "Something wen't wrong at our end. Please try again." });
+    return res.status(500).json({
+      message: "Something wen't wrong at our end. Please try again.",
+      success: false,
+    });
   }
 };
 
@@ -55,9 +58,10 @@ const createNote = async (req, res) => {
     const { title, content } = req.body;
 
     if (!title || !content) {
-      return res
-        .status(404)
-        .json({ message: "Title and content are required to create a note." });
+      return res.status(404).json({
+        message: "Title and content are required to create a note.",
+        success: false,
+      });
     }
 
     const result = await db.query(
@@ -74,12 +78,14 @@ const createNote = async (req, res) => {
     return res.status(200).json({
       message: "A new note created successfully.",
       payload: result.rows[0],
+      success: true,
     });
   } catch (error) {
     console.error("Error in createNote controller: ", error.message);
-    return res
-      .status(500)
-      .json({ message: "Something wen't wrong at our end. Please try again." });
+    return res.status(500).json({
+      message: "Something wen't wrong at our end. Please try again.",
+      success: false,
+    });
   }
 };
 
@@ -98,14 +104,16 @@ const createTask = async (req, res) => {
     }
 
     if (!note_id) {
-      return res
-        .status(404)
-        .json({ message: "Corresponding Note ID not found in the request." });
+      return res.status(404).json({
+        message: "Corresponding Note ID not found in the request.",
+        success: false,
+      });
     }
 
     if (!task_name) {
       return res.status(404).json({
         message: "Unable to create a task. No task found in your request.",
+        success: false,
       });
     }
 
@@ -123,9 +131,10 @@ const createTask = async (req, res) => {
     return res.status(201).json({ message: "Task successfully created.." });
   } catch (error) {
     console.error("Error in createTask controller: ", error.message);
-    return res
-      .status(500)
-      .json({ message: "Something wen't wrong at our end. Please try again." });
+    return res.status(500).json({
+      message: "Something wen't wrong at our end. Please try again.",
+      success: true,
+    });
   }
 };
 
@@ -143,9 +152,10 @@ const updateTask = async (req, res) => {
     const { id } = req.params;
 
     if (!id) {
-      return res
-        .status(404)
-        .json({ message: "Corresponding task id not found in your request." });
+      return res.status(404).json({
+        message: "Corresponding task id not found in your request.",
+        success: false,
+      });
     }
 
     const result = await db.query(
@@ -159,17 +169,21 @@ const updateTask = async (req, res) => {
     );
 
     if (result.rowCount === 0) {
-      return res
-        .status(404)
-        .json({ message: "Unable to update the task at this time." });
+      return res.status(404).json({
+        message: "Unable to update the task at this time.",
+        success: false,
+      });
     }
 
-    return res.status(200).json({ message: "Task successfully updated." });
+    return res
+      .status(200)
+      .json({ message: "Task successfully updated.", success: true });
   } catch (error) {
     console.error("Error in updateTask controller: ", error.message);
-    return res
-      .status(500)
-      .json({ message: "Something wen't wrong at our end. Please try again." });
+    return res.status(500).json({
+      message: "Something wen't wrong at our end. Please try again.",
+      success: false,
+    });
   }
 };
 
@@ -183,18 +197,22 @@ const getAllNotes = async (req, res) => {
       `);
 
     if (allNotes?.rows?.length === 0) {
-      return res.status(204).json({ message: "No Notes available." });
+      return res
+        .status(204)
+        .json({ message: "No Notes available.", success: false });
     }
 
     return res.status(200).json({
       message: "All notes fetched successfully.",
       payload: allNotes.rows,
+      success: true,
     });
   } catch (error) {
     console.error("Error in createNote controller: ", error.message);
-    return res
-      .status(500)
-      .json({ message: "Something wen't wrong at our end. Please try again." });
+    return res.status(500).json({
+      message: "Something wen't wrong at our end. Please try again.",
+      success: false,
+    });
   }
 };
 
@@ -212,9 +230,10 @@ const deleteNote = async (req, res) => {
     const { id } = req.params;
 
     if (!id) {
-      return res
-        .status(404)
-        .json({ message: "Note id not found in your request." });
+      return res.status(404).json({
+        message: "Note id not found in your request.",
+        success: false,
+      });
     }
 
     const result = await db.query(
@@ -226,17 +245,23 @@ const deleteNote = async (req, res) => {
     );
 
     if (!result.rowCount === 0) {
-      return res
-        .status(404)
-        .json({ message: "Unable to delete the note at this time." });
+      return res.status(404).json({
+        message: "Unable to delete the note at this time.",
+        success: false,
+      });
     }
 
-    return res.status(200).json({ message: "Note Deleted successfully." });
+    return res
+      .status(200)
+      .json({ message: "Note Deleted successfully.", success: true });
   } catch (error) {
     console.error("Error in deleteNote controller: ", error.message);
     return res
       .status(500)
-      .json({ message: "Something wen't wrong at our end. Please try again." });
+      .json({
+        message: "Something wen't wrong at our end. Please try again.",
+        success: false,
+      });
   }
 };
 
