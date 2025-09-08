@@ -71,7 +71,7 @@ function App() {
     () => {
       controller.abort();
     };
-  }, []);
+  }, [refreshNotes]);
 
   useEffect(() => {
     if (currentSelectedNoteID) {
