@@ -37,6 +37,8 @@ function App() {
   }
 
   useEffect(() => {
+    if (!userLoggedIn) return;
+
     const controller = new AbortController();
 
     (async function () {
