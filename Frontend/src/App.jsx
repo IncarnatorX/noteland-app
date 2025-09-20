@@ -73,7 +73,7 @@ function App() {
     () => {
       controller.abort();
     };
-  }, [refreshNotes]);
+  }, [refreshNotes, userLoggedIn]);
 
   useEffect(() => {
     if (currentSelectedNoteID) {
