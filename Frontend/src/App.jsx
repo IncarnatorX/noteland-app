@@ -4,7 +4,6 @@ import MainSection from "./components/MainSection";
 import Sidebar from "./components/Sidebar";
 import AuthComponent from "./components/AuthComponent";
 import NewNoteIcon from "./components/NewNoteIcon";
-// import "./App.css";
 import "./styles/mobile.css";
 import "./styles/tab.css";
 import "./styles/desktop.css";

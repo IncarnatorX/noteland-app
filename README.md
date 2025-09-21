@@ -87,7 +87,7 @@ npm run dev
 Once both the backend and frontend are running, open:
 
 ```
-http://localhost:5173
+http://localhost:5000
 ```
 
 _(Port may vary depending on Vite settings.)_

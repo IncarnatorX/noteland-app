@@ -20,7 +20,7 @@ This is the frontend for **Noteland**, a note-taking and task management web app
   - `assets/` — (currently empty)
   - `App.jsx` — Main app component
   - `main.jsx` — Entry point
-  - `App.css`, `index.css` — Styles
+  - `Styles folder`, `index.css` — Styles
 
 ## Getting Started
 

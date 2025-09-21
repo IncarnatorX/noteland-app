@@ -33,6 +33,7 @@ const createTables = async () => {
     console.log("Tables - NOTES, TASKS, USERS are ready.");
   } catch (error) {
     console.error("Error creating tables: ", error.message);
+    throw error;
   }
 };
 

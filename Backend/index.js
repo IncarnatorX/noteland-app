@@ -9,6 +9,8 @@ import healthCheckRoute from "./src/routes/healthCheckRoute.js";
 
 dotenv.config();
 
+const red = (msg) => `\x1b[31m${msg}\x1b[0m`;
+
 const PORT = process.env.PORT;
 
 const app = express();
@@ -36,4 +38,7 @@ await createTables()
       console.log(`Server stated. Listening on PORT: ${PORT}`)
     );
   })
-  .catch((err) => console.log("Error starting server", err));
+  .catch((error) => {
+    console.log(red(`Error starting server: ${error}`));
+    process.exit(1);
+  });
