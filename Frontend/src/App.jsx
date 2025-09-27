@@ -36,7 +36,6 @@ function App() {
         });
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
           setUserLoggedIn(data.isLoggedIn);
         }
       } catch (error) {
