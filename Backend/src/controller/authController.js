@@ -197,9 +197,31 @@ const userController = async function (req, res) {
   }
 };
 
+const meController = async function (req, res) {
+  try {
+    const incomingToken =
+      req.cookies.noteland_token ||
+      req.body.noteland_token ||
+      req.header("Authorization")?.replace("Bearer ", "");
+
+    if (!incomingToken) {
+      return res
+        .status(200)
+        .json({ message: "User not logged in.", isLoggedIn: false });
+    } else {
+      return res
+        .status(200)
+        .json({ message: "User logged in.", isLoggedIn: true });
+    }
+  } catch (error) {
+    console.error("Something went wrong in the meController", error);
+  }
+};
+
 export {
   registerController,
   loginController,
   logoutController,
   userController,
+  meController,
 };

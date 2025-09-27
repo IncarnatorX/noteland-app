@@ -1,8 +1,9 @@
 import { useContext, useEffect, useRef } from "react";
 import { NotesContext } from "../context/NotesContext";
+import { VITE_BACKEND_URL } from "../utils/constants.js";
 import notify from "../toasts/WarningToast.js";
-import PropTypes from "prop-types";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 const TaskCreator = ({ openTaskDialog, setOpenTaskDialog }) => {
   const taskRef = useRef(null);
@@ -51,9 +52,7 @@ const TaskCreator = ({ openTaskDialog, setOpenTaskDialog }) => {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/notes/create-task/${
-          currentSelectedNote.id
-        }`,
+        `${VITE_BACKEND_URL}/notes/create-task/${currentSelectedNote.id}`,
         {
           method: "POST",
           headers: {

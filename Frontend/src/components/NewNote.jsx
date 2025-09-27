@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NotesContext } from "../context/NotesContext.js";
 import notify from "../toasts/WarningToast.js";
 import { toast } from "react-toastify";
+import { VITE_BACKEND_URL } from "../utils/constants.js";
 
 const NewNote = () => {
   const { refreshNotes, setRefreshNotes, setNewNote, setPlaceholder } =
@@ -19,17 +20,14 @@ const NewNote = () => {
     const noteData = Object.fromEntries(new FormData(event.target));
 
     try {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/notes/create-note`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(noteData),
-          credentials: "include",
-        }
-      );
+      const response = await fetch(`${VITE_BACKEND_URL}/notes/create-note`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(noteData),
+        credentials: "include",
+      });
 
       if (!response.ok) {
         throw new Error("Something wen't wrong.");

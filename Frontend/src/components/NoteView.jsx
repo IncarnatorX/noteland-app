@@ -3,6 +3,7 @@ import { NotesContext } from "../context/NotesContext";
 import TaskCreator from "./TaskCreator";
 import TaskManager from "./TaskManager";
 import { toast } from "react-toastify";
+import { VITE_BACKEND_URL } from "../utils/constants";
 
 const NoteView = () => {
   const {
@@ -18,9 +19,7 @@ const NoteView = () => {
   async function handleDeleteNote() {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/notes/delete-note/${
-          currentSelectedNote.id
-        }`,
+        `${VITE_BACKEND_URL}/notes/delete-note/${currentSelectedNote.id}`,
         {
           method: "DELETE",
           credentials: "include",

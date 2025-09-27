@@ -1,6 +1,7 @@
 import { useContext, useRef } from "react";
 import { NotesContext } from "../context/NotesContext.js";
 import { toast } from "react-toastify";
+import { VITE_BACKEND_URL } from "../utils/constants.js";
 
 const Sidebar = () => {
   const {
@@ -50,7 +51,7 @@ const Sidebar = () => {
   async function handleUserLogOut() {
     setAuthenticating(true);
     try {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/auth/logout`;
+      const url = `${VITE_BACKEND_URL}/auth/logout`;
 
       const response = await fetch(url, {
         method: "POST",

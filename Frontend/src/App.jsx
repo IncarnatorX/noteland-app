@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { NotesContext } from "./context/NotesContext";
+import { VITE_BACKEND_URL } from "./utils/constants";
 import MainSection from "./components/MainSection";
 import Sidebar from "./components/Sidebar";
 import AuthComponent from "./components/AuthComponent";
@@ -27,6 +28,25 @@ function App() {
 
   const authComponentRef = useRef(null);
 
+  useEffect(() => {
+    async function initMe() {
+      try {
+        const response = await fetch(`${VITE_BACKEND_URL}/auth/me`, {
+          credentials: "include",
+        });
+        if (response.ok) {
+          const data = await response.json();
+          console.log(data);
+          setUserLoggedIn(data.isLoggedIn);
+        }
+      } catch (error) {
+        console.error("Error in initMe function", error);
+      }
+    }
+
+    initMe();
+  }, []);
+
   async function safeFetch(url, signal) {
     const res = await fetch(url, { credentials: "include", signal });
     if (!res.ok) {
@@ -43,12 +63,9 @@ function App() {
     (async function () {
       try {
         const [userResponse, userNotesResponse] = await Promise.all([
+          safeFetch(`${VITE_BACKEND_URL}/auth/get-user`, controller.signal),
           safeFetch(
-            `${import.meta.env.VITE_BACKEND_URL}/auth/get-user`,
-            controller.signal
-          ),
-          safeFetch(
-            `${import.meta.env.VITE_BACKEND_URL}/notes/get-user-notes`,
+            `${VITE_BACKEND_URL}/notes/get-user-notes`,
             controller.signal
           ),
         ]);

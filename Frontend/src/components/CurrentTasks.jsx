@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { NotesContext } from "../context/NotesContext";
+import { VITE_BACKEND_URL } from "../utils/constants";
 
 const CurrentTasks = ({ task }) => {
   const { refreshNotes, setRefreshNotes } = useContext(NotesContext);
@@ -15,7 +16,7 @@ const CurrentTasks = ({ task }) => {
 
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/notes/update-task/${id}`,
+        `${VITE_BACKEND_URL}/notes/update-task/${id}`,
         {
           method: "PATCH",
           credentials: "include",

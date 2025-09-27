@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { NotesContext } from "../context/NotesContext";
 import { toast } from "react-toastify";
+import { VITE_BACKEND_URL } from "../utils/constants";
 
 const AuthComponent = () => {
   const {
@@ -28,7 +29,7 @@ const AuthComponent = () => {
     setAuthenticating(true);
 
     try {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/auth/${
+      const url = `${VITE_BACKEND_URL}/auth/${
         authKind === "login" ? "login" : "register"
       }`;
 
