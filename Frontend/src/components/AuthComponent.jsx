@@ -90,7 +90,7 @@ const AuthComponent = () => {
     return () => {
       document.removeEventListener("keydown", handleAuthComponent);
     };
-  }, [openAuthComponent]);
+  }, [openAuthComponent, authComponentRef]);
 
   return (
     <dialog ref={authComponentRef} className="auth-component-dialog">

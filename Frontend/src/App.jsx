@@ -21,6 +21,7 @@ function App() {
   const [currentSelectedNote, setCurrentSelectedNote] = useState({});
   const [currentSelectedNoteID, setCurrentSelectedNoteID] = useState(0);
   const [noteView, setNoteView] = useState(false);
+  const [notesContainer, setNotesContainer] = useState(true);
 
   const [openAuthComponent, setOpenAuthComponent] = useState(false);
 
@@ -65,7 +66,7 @@ function App() {
           safeFetch(`${VITE_BACKEND_URL}/auth/get-user`, controller.signal),
           safeFetch(
             `${VITE_BACKEND_URL}/notes/get-user-notes`,
-            controller.signal
+            controller.signal,
           ),
         ]);
 
@@ -93,7 +94,7 @@ function App() {
   useEffect(() => {
     if (currentSelectedNoteID) {
       setCurrentSelectedNote(() =>
-        allNotes?.find((note) => note.id === currentSelectedNoteID)
+        allNotes?.find((note) => note.id === currentSelectedNoteID),
       );
     }
   }, [allNotes, currentSelectedNoteID]);
@@ -124,6 +125,8 @@ function App() {
         setCurrentSelectedNoteID,
         authenticating,
         setAuthenticating,
+        notesContainer,
+        setNotesContainer,
       }}
     >
       <div className="app">
