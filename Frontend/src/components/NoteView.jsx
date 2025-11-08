@@ -4,6 +4,7 @@ import TaskCreator from "./TaskCreator";
 import TaskManager from "./TaskManager";
 import { toast } from "react-toastify";
 import { VITE_BACKEND_URL } from "../utils/constants";
+import EditNoteModal from "./EditNoteModal";
 
 const NoteView = () => {
   const {
@@ -15,6 +16,8 @@ const NoteView = () => {
   } = useContext(NotesContext);
 
   const [openTaskDialog, setOpenTaskDialog] = useState(false);
+
+  const [openEditModal, setOpenEditModal] = useState(false);
 
   async function handleDeleteNote() {
     try {
@@ -50,8 +53,9 @@ const NoteView = () => {
           <button className="new-task" onClick={() => setOpenTaskDialog(true)}>
             New Task
           </button>
-
-          {/* <button className="save-note">Save Note</button> */}
+          <button className="edit-note" onClick={() => setOpenEditModal(true)}>
+            Edit Note
+          </button>
           <button className="delete-note" onClick={handleDeleteNote}>
             Delete Note
           </button>
@@ -69,6 +73,12 @@ const NoteView = () => {
       <TaskCreator
         openTaskDialog={openTaskDialog}
         setOpenTaskDialog={setOpenTaskDialog}
+      />
+
+      <EditNoteModal
+        openEditModal={openEditModal}
+        setOpenEditModal={setOpenEditModal}
+        currentSelectedNote={currentSelectedNote}
       />
     </div>
   );
