@@ -349,7 +349,7 @@
     font-size: 1rem;
   }
 
-  .save-note {
+  .edit-note {
     background-color: #26a69a;
     color: #fff;
     font-size: 1rem;
@@ -381,14 +381,82 @@
     white-space: pre-wrap;
   }
 
-  .task-creator-dialog[open] {
+  .edit-note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 35rem;
+    padding: 1rem;
+  }
+
+  .edit-heading {
+    text-align: center;
+  }
+
+  .edit-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .edit-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .edit-text {
+    border: 1.5px solid black;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .edit-content {
+    field-sizing: content;
+  }
+
+  .edit-btns-div {
+    display: flex;
+    padding: 0.2rem;
+    justify-content: end;
+    gap: 0.5rem;
+  }
+
+  .edit-btn {
+    background-color: none;
+    outline: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.3rem;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  .edit-update {
+    background-color: #42a5f5;
+  }
+
+  .edit-cancel {
+    background-color: #ef5350;
+  }
+
+  .edit-error {
+    color: #ef5350;
+    font-size: 12px;
+  }
+
+  .task-creator-dialog[open],
+  .edit-note-dialog[open] {
     align-self: center;
     margin-inline: auto;
     border: none;
     border-radius: 1rem;
   }
 
-  .task-creator-dialog[open]::backdrop {
+  .task-creator-dialog[open]::backdrop,
+  .edit-note-dialog[open]::backdrop {
     background-color: rgba(0, 0, 0, 0.5);
   }
 
