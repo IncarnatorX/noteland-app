@@ -197,7 +197,7 @@
     background-color: #fff;
     margin: 0.5rem;
     padding: 0.5rem;
-    border-radius: 0.7rem;
+    border-radius: 0.4rem;
     cursor: pointer;
     /* max-width: 200px; */
     width: inherit;
@@ -241,6 +241,13 @@
     font-size: 1rem;
     grid-area: auth-btn;
     justify-self: center;
+  }
+
+  .auth-btn-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
   }
 
   .main {
@@ -338,6 +345,11 @@
     }
   }
 
+  .note-view-btns {
+    display: flex;
+    align-items: center;
+  }
+
   .note-view-btns button {
     border: none;
     outline: none;
@@ -345,6 +357,16 @@
     cursor: pointer;
     border-radius: 0.7rem;
     margin: 0.5rem;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .note-view-btn-icon {
+    width: 1rem;
+    height: 1rem;
   }
 
   .new-task {
@@ -354,7 +376,6 @@
 
   .edit-note {
     background-color: #26a69a;
-    color: #fff;
     font-size: 1rem;
   }
 
@@ -377,6 +398,8 @@
     padding: 0.5rem 0;
     font-weight: bolder;
     color: #5e35b1;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
   }
 
   .note-view-content {

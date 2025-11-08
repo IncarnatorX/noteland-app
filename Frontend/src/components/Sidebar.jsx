@@ -1,7 +1,10 @@
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { NotesContext } from "../context/NotesContext.js";
 import { toast } from "react-toastify";
 import { VITE_BACKEND_URL } from "../utils/constants.js";
+import { useIsMobile } from "../hooks/use-mobile.jsx";
+import NotesContainer from "./NotesContainer.jsx";
+import { LogIn, LogOut } from "lucide-react";
 
 const Sidebar = () => {
   const {
@@ -11,16 +14,22 @@ const Sidebar = () => {
     setOpenAuthComponent,
     setNewNote,
     setPlaceholder,
-    allNotes,
+    // allNotes,
     setAllNotes,
     setNoteView,
-    setCurrentSelectedNote,
-    setCurrentSelectedNoteID,
+    // setCurrentSelectedNote,
+    // setCurrentSelectedNoteID,
     authenticating,
     setAuthenticating,
+    notesContainer,
+    setNotesContainer,
   } = useContext(NotesContext);
 
-  const notesContainerRef = useRef(null);
+  const isMobile = useIsMobile();
+
+  // console.log("isMobile", isMobile);
+
+  // const notesContainerRef = useRef(null);
 
   // const handleNewNoteButton = () => {
   //   setNewNote(true);
@@ -32,21 +41,22 @@ const Sidebar = () => {
     setNewNote(false);
     setPlaceholder(true);
     setNoteView(false);
+    isMobile && setNotesContainer(true);
   }
 
-  function handleNotesContainer() {
-    const { current } = notesContainerRef;
-    current.classList.toggle("active"); // Toggle the active class
-  }
+  // function handleNotesContainer() {
+  //   const { current } = notesContainerRef;
+  //   current.classList.toggle("active"); // Toggle the active class
+  // }
 
-  const renderNoteView = (note) => {
-    setCurrentSelectedNote(note);
-    setCurrentSelectedNoteID(note.id);
-    setNewNote(false);
-    setPlaceholder(false);
-    setNoteView(true);
-    handleNotesContainer();
-  };
+  // const renderNoteView = (note) => {
+  //   setCurrentSelectedNote(note);
+  //   setCurrentSelectedNoteID(note.id);
+  //   setNewNote(false);
+  //   setPlaceholder(false);
+  //   setNoteView(true);
+  //   // handleNotesContainer();
+  // };
 
   async function handleUserLogOut() {
     setAuthenticating(true);
@@ -82,45 +92,39 @@ const Sidebar = () => {
 
   return (
     <section className="sidebar">
-      <div className="logo">
+      <div className="logo" onClick={goHome}>
         <img src="./logo-main.png" alt="Logo" className="app-logo" />
-        <img
+        {/* <img
           src="./list.png"
           alt="Menu Icon"
           className="menu-icon"
-          onClick={handleNotesContainer}
-        />
-        <h1 onClick={goHome}>NOTE LAND</h1>
+          // onClick={handleNotesContainer}
+        /> */}
+        <h1>NOTELAND</h1>
       </div>
 
-      <div className="notes-container" ref={notesContainerRef}>
-        {allNotes &&
-          user &&
-          allNotes.map((note) => {
-            return (
-              <div
-                key={crypto.randomUUID()}
-                className="note"
-                onClick={() => renderNoteView(note)}
-              >
-                <h4 className="note-title">{note.title}</h4>
-                <div className="separator"></div>
-                <p className="note-content">{note.content}</p>
-              </div>
-            );
-          })}
-      </div>
+      {!isMobile && notesContainer && <NotesContainer />}
       {user ? (
         <button
           className="auth-btn"
           onClick={handleUserLogOut}
           disabled={authenticating}
         >
-          {authenticating ? "Please wait..." : "Logout"}
+          {authenticating ? (
+            "Please wait..."
+          ) : (
+            <div className="auth-btn-sidebar">
+              <LogOut />
+              <span>Logout</span>
+            </div>
+          )}
         </button>
       ) : (
-        <button className="auth-btn" onClick={() => setOpenAuthComponent(true)}>
-          Login
+        <button
+          className="auth-btn auth-btn-sidebar"
+          onClick={() => setOpenAuthComponent(true)}
+        >
+          <LogIn /> <span>Login</span>
         </button>
       )}
     </section>

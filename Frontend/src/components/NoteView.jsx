@@ -5,6 +5,9 @@ import TaskManager from "./TaskManager";
 import { toast } from "react-toastify";
 import { VITE_BACKEND_URL } from "../utils/constants";
 import EditNoteModal from "./EditNoteModal";
+// import { Delete, Edit } from "lucide-react";
+import NoteViewButtons from "./NoteViewButtons";
+import { useIsMobile } from "../hooks/use-mobile";
 
 const NoteView = () => {
   const {
@@ -18,6 +21,8 @@ const NoteView = () => {
   const [openTaskDialog, setOpenTaskDialog] = useState(false);
 
   const [openEditModal, setOpenEditModal] = useState(false);
+
+  const isMobile = useIsMobile();
 
   async function handleDeleteNote() {
     try {
@@ -49,17 +54,24 @@ const NoteView = () => {
       {/* HEADING DIV */}
       <div className="note-view-heading">
         <h2>{currentSelectedNote.title}</h2>
-        <div className="note-view-btns">
+        {/* <div className="note-view-btns">
           <button className="new-task" onClick={() => setOpenTaskDialog(true)}>
-            New Task
+            <Edit className="note-view-btn-icon" /> <span>New Task</span>
           </button>
           <button className="edit-note" onClick={() => setOpenEditModal(true)}>
-            Edit Note
+            <Edit className="note-view-btn-icon" /> <span>Edit Note</span>
           </button>
           <button className="delete-note" onClick={handleDeleteNote}>
-            Delete Note
+            <Delete className="note-view-btn-icon" /> <span>Delete Note</span>
           </button>
-        </div>
+        </div> */}
+        {!isMobile && (
+          <NoteViewButtons
+            setOpenEditModal={setOpenEditModal}
+            setOpenTaskDialog={setOpenTaskDialog}
+            handleDeleteNote={handleDeleteNote}
+          />
+        )}
       </div>
       {/* CONTENT DIV */}
       <div className="note-view-div">
@@ -67,6 +79,18 @@ const NoteView = () => {
         <p className="note-view-content">{currentSelectedNote.content}</p>
         {currentSelectedNote?.tasks?.length > 0 && (
           <TaskManager tasks={currentSelectedNote.tasks} />
+        )}
+        {isMobile && (
+          <div
+            style={{ display: "flex", gap: "0.5rem", flexDirection: "column" }}
+          >
+            <div className="separator"></div>
+            <NoteViewButtons
+              setOpenEditModal={setOpenEditModal}
+              setOpenTaskDialog={setOpenTaskDialog}
+              handleDeleteNote={handleDeleteNote}
+            />
+          </div>
         )}
       </div>
 
