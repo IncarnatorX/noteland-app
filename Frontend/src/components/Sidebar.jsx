@@ -111,7 +111,7 @@ const Sidebar = () => {
           disabled={authenticating}
         >
           {authenticating ? (
-            "Please wait..."
+            <p>Please wait...</p>
           ) : (
             <div className="auth-btn-sidebar">
               <LogOut />

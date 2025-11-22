@@ -1,169 +1,169 @@
 @media screen and (min-width: 320px) and (max-width: 520px) {
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-        font-family: inherit;
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+  }
+
+  .app {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+  }
+
+  .new-note-icon {
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      scale: 1.1;
+      transition: scale 300ms linear;
     }
+  }
 
-    .app {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        min-height: 100vh;
+  .plus-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .auth-component-dialog {
+    align-content: center;
+    margin: auto;
+    border: none;
+    border-radius: 1rem;
+    width: 100%;
+  }
+
+  .auth-component-dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .auth-form {
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    width: 80%;
+  }
+
+  .auth-form-input {
+    width: 100%;
+    outline: none;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid #000;
+    font-size: 1rem;
+    &:user-valid {
+      border-color: #26a69a;
     }
-
-    .new-note-icon {
-        border-radius: 50%;
-        position: absolute;
-        right: 10px;
-        bottom: 10px;
-        cursor: pointer;
-        width: 100px;
-        height: 100px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        &:hover {
-            scale: 1.1;
-            transition: scale 300ms linear;
-        }
+    &:user-invalid {
+      border-color: rgb(218, 15, 15);
     }
+  }
 
-    .plus-icon {
-        width: 50px;
-        height: 50px;
-    }
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 2px;
+  }
 
-    .auth-component-dialog {
-        align-content: center;
-        margin: auto;
-        border: none;
-        border-radius: 1rem;
-        width: 100%;
-    }
+  .field-group-label {
+    font-size: 0.9rem;
+  }
 
-    .auth-component-dialog[open]::backdrop {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+  .password-err-msg {
+    font-size: 0.85rem;
+    color: rgb(218, 15, 15);
+  }
 
-    .auth-form {
-        margin-inline: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
-        justify-content: center;
-        padding: 1rem;
-        width: 80%;
-    }
+  .password-checkbox {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 0.3rem;
+    cursor: pointer;
+  }
 
-    .auth-form-input {
-        width: 100%;
-        outline: none;
-        padding: 1rem;
-        border-radius: 0.5rem;
-        border: 2px solid #000;
-        font-size: 1rem;
-        &:user-valid {
-            border-color: #26a69a;
-        }
-        &:user-invalid {
-            border-color: rgb(218, 15, 15);
-        }
-    }
+  .show-password-text {
+    font-size: 1rem;
+  }
 
-    .field-group {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: 2px;
-    }
+  .here-text {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #0071e3;
+  }
 
-    .field-group-label {
-        font-size: 0.9rem;
-    }
+  .login-btn {
+    border: none;
+    background-color: #0071e3;
+    font-size: 1em;
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+  }
 
-    .password-err-msg {
-        font-size: 0.85rem;
-        color: rgb(218, 15, 15);
-    }
+  /* SIDEBAR SECTION */
 
-    .password-checkbox {
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        padding: 0.3rem;
-        cursor: pointer;
-    }
+  .sidebar {
+    padding: 1rem 0;
+    background-color: #26a69a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
 
-    .show-password-text {
-        font-size: 1rem;
-    }
+  .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    grid-area: logo;
+    cursor: pointer;
+  }
 
-    .here-text {
-        text-decoration: underline;
-        cursor: pointer;
-        color: #0071e3;
-    }
+  .logo img {
+    width: 30px;
+    height: 30px;
+  }
 
-    .login-btn {
-        border: none;
-        background-color: #0071e3;
-        font-size: 1em;
-        color: white;
-        border-radius: 0.5rem;
-        padding: 0.5rem 1.5rem;
-        cursor: pointer;
-    }
-
-    /* SIDEBAR SECTION */
-
-    .sidebar {
-        padding: 1rem 0;
-        background-color: #26a69a;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: relative;
-    }
-
-    .logo {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 0.5rem;
-        padding: 0.5rem;
-        grid-area: logo;
-        cursor: pointer;
-    }
-
-    .logo img {
-        width: 30px;
-        height: 30px;
-    }
-
-    /* .app-logo {
+  /* .app-logo {
     display: none;
   } */
 
-    .logo h1 {
-        font-weight: 900;
-        font-size: 1.3rem;
-    }
+  .logo h1 {
+    font-weight: 900;
+    font-size: 1.3rem;
+  }
 
-    .notes-container {
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        background-color: #fff;
-        border: 1.5px solid #fff;
-        border-radius: 0.3rem;
-        /* padding: 0.2rem;
-    overflow-x: auto;
+  .notes-container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: #fff;
+    border: 1.5px solid #fff;
+    /* border-radius: 0.3rem; */
+    padding: 0.2rem;
+    /*  overflow-x: auto;
     width: 55vw;
     height: 100vh;
     position: absolute;
@@ -172,10 +172,10 @@
     left: 0;
     transform: translateX(-100%);
     transition: transform 0.25s ease-in-out; */
-    }
+  }
 
-    /* When sidebar is active (visible) */
-    /*.notes-container.active {
+  /* When sidebar is active (visible) */
+  /*.notes-container.active {
         transform: translateX(0);
     }
 
@@ -197,422 +197,422 @@
         background: #555;
     }*/
 
-    .note {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 0.5rem;
-        padding: 0.5rem 0;
-        text-overflow: ellipsis;
-        background-color: #f0f3f5;
-        border: 1px solid #f0f3f5;
-        /* border-radius: 0.7rem; */
-    }
+  .note {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    text-overflow: ellipsis;
+    background-color: #f0f3f5;
+    border: 1px solid #f0f3f5;
+    border-radius: 0.3rem;
+  }
 
-    .note-title {
-        color: #ec407a;
-        font-size: 1.1rem;
-        padding: 0 0.2rem;
-    }
+  .note-title {
+    color: #ec407a;
+    font-size: 1.1rem;
+    padding: 0 0.2rem;
+  }
 
-    .separator {
-        width: 100%;
-        background-color: rgb(203, 197, 197);
-        height: 2px;
-        padding: 0;
-    }
+  .separator {
+    width: 100%;
+    background-color: rgb(203, 197, 197);
+    height: 2px;
+    padding: 0;
+  }
 
-    .note-content {
-        width: inherit;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        font-size: 1.1rem;
-        padding: 0 0.2rem;
-    }
+  .note-content {
+    width: inherit;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 1.1rem;
+    padding: 0 0.2rem;
+  }
 
-    .auth-btn {
-        height: 90%;
-        border: none;
-        padding: 0.8rem;
-        border-radius: 0.7rem;
-        outline: none;
-        cursor: pointer;
-        background-color: #80deea;
-        font-weight: 500;
-        font-family: inherit;
-        font-size: 1.2rem;
-        margin-inline-end: 0.5rem;
-    }
+  .auth-btn {
+    height: 90%;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 0.7rem;
+    outline: none;
+    cursor: pointer;
+    background-color: #80deea;
+    font-weight: 500;
+    font-family: inherit;
+    font-size: 1.2rem;
+    margin-inline-end: 0.5rem;
+  }
 
-    .auth-btn-sidebar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
+  .auth-btn-sidebar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 
-    /* MAIN SECTION */
-    .main {
-        width: 100%;
-        display: flex;
-        /*align-items: center;*/
-        justify-content: center;
-        background-color: #5e35b1;
-        position: relative;
-        padding: 1rem;
-        /*min-height: calc(100vh - 80px);*/
-        flex: auto;
-    }
+  /* MAIN SECTION */
+  .main {
+    width: 100%;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+    background-color: #5e35b1;
+    position: relative;
+    padding: 1rem 0;
+    /*min-height: calc(100vh - 80px);*/
+    flex: auto;
+  }
 
-    .placeholder {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-    }
+  .placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
 
-    .placeholder img {
-        width: 250px;
-        height: 250px;
-    }
+  .placeholder img {
+    width: 250px;
+    height: 250px;
+  }
 
-    .placeholder h3,
-    .placeholder p {
-        color: white;
-    }
+  .placeholder h3,
+  .placeholder p {
+    color: white;
+  }
 
-    .new-note {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1rem;
-        background-color: white;
-        width: 90%;
-        height: 60%;
-        border-radius: 0.7rem;
-        padding: 1rem;
-    }
+  .new-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: white;
+    width: 90%;
+    height: 60%;
+    border-radius: 0.7rem;
+    padding: 1rem;
+  }
 
-    #input-title,
-    #input-content {
-        border: none;
-        border-bottom: 3px solid black;
-        padding: 1rem;
-        outline: none;
-        width: 90%;
-        font-size: 1rem;
-    }
+  #input-title,
+  #input-content {
+    border: none;
+    border-bottom: 3px solid black;
+    padding: 1rem;
+    outline: none;
+    width: 90%;
+    font-size: 1rem;
+  }
 
-    #input-content {
-        resize: none;
-        white-space: pre-wrap;
-    }
+  #input-content {
+    resize: none;
+    white-space: pre-wrap;
+  }
 
-    .btns {
-        display: flex;
-        gap: 1.5rem;
-    }
+  .btns {
+    display: flex;
+    gap: 1.5rem;
+  }
 
-    .btns button {
-        border: none;
-        outline: none;
-        padding: 0.5rem 1rem;
-        border-radius: 0.7rem;
-        cursor: pointer;
-    }
+  .btns button {
+    border: none;
+    outline: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.7rem;
+    cursor: pointer;
+  }
 
-    .create-note {
-        background-color: #42a5f5;
-    }
+  .create-note {
+    background-color: #42a5f5;
+  }
 
-    .cancel-note {
-        background-color: #ef5350;
-    }
+  .cancel-note {
+    background-color: #ef5350;
+  }
 
-    .note-view {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        height: 100vh;
-        width: 100%;
-    }
+  .note-view {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    width: 100%;
+  }
 
-    .note-view-heading {
-        /* height: 76px; */
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        padding: 1rem;
-        gap: 1rem;
-        h2 {
-            color: #fff;
-        }
+  .note-view-heading {
+    /* height: 76px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+    h2 {
+      color: #fff;
     }
+  }
 
-    .note-view-btns {
-        display: flex;
-        gap: 0.5rem;
-    }
+  .note-view-btns {
+    display: flex;
+    gap: 0.5rem;
+  }
 
-    .note-view-btns button {
-        border: none;
-        outline: none;
-        padding: 0.5rem;
-        cursor: pointer;
-        border-radius: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-    }
+  .note-view-btns button {
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
 
-    .note-view-btn-icon {
-        width: 1rem;
-        height: 1rem;
-    }
+  .note-view-btn-icon {
+    width: 1rem;
+    height: 1rem;
+  }
 
-    .new-task {
-        background-color: #42a5f5;
-        font-size: 1rem;
-        color: #fff;
-    }
+  .new-task {
+    background-color: #42a5f5;
+    font-size: 1rem;
+    color: #fff;
+  }
 
-    .edit-note {
-        background-color: #26a69a;
-        color: #fff;
-        font-size: 1rem;
-    }
+  .edit-note {
+    background-color: #26a69a;
+    color: #fff;
+    font-size: 1rem;
+  }
 
-    .delete-note {
-        background-color: #ef5350;
-        font-size: 1rem;
-        color: #fff;
-    }
+  .delete-note {
+    background-color: #ef5350;
+    font-size: 1rem;
+    color: #fff;
+  }
 
-    .note-view-div {
-        display: flex;
-        flex-direction: column;
-        background-color: #fff;
-        border-radius: 0.7rem;
-        padding: 1rem;
-        /* margin: 1rem; */
-        /* height: calc(100vh - 76px); */
-        flex: auto;
-        overflow-y: auto;
-    }
+  .note-view-div {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 0.7rem;
+    padding: 1rem;
+    /* margin: 1rem; */
+    /* height: calc(100vh - 76px); */
+    flex: auto;
+    overflow-y: auto;
+  }
 
-    .note-view-title {
-        padding: 0.5rem 0;
-        font-weight: bolder;
-        color: #5e35b1;
-        text-decoration: underline;
-        text-underline-offset: 0.2rem;
-    }
+  .note-view-title {
+    padding: 0.5rem 0;
+    font-weight: bolder;
+    color: #5e35b1;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
 
-    .note-content-title {
-        padding: 0.5rem 0;
-        font-weight: bolder;
-    }
+  .note-content-title {
+    padding: 0.5rem 0;
+    font-weight: bolder;
+  }
 
-    .note-view-content {
-        padding: 1rem 0;
-        white-space: pre-wrap;
-        overflow-y: auto;
-    }
+  .note-view-content {
+    padding: 1rem 0;
+    white-space: pre-wrap;
+    overflow-y: auto;
+  }
 
-    .edit-note-form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        width: 35rem;
-        padding: 1rem;
-    }
+  .edit-note-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 35rem;
+    padding: 1rem;
+  }
 
-    .edit-heading {
-        text-align: center;
-    }
+  .edit-heading {
+    text-align: center;
+  }
 
-    .edit-input-div {
-        display: flex;
-        flex-direction: column;
-        gap: 0.2rem;
-    }
+  .edit-input-div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
 
-    .edit-label {
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
+  .edit-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
 
-    .edit-text {
-        border: 1.5px solid black;
-        border-radius: 0.25rem;
-        padding: 0.5rem 0.2rem;
-        font-size: 0.8rem;
-        font-weight: 600;
-    }
+  .edit-text {
+    border: 1.5px solid black;
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.2rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
 
-    .edit-content {
-        field-sizing: content;
-    }
+  .edit-content {
+    field-sizing: content;
+  }
 
-    .edit-btns-div {
-        display: flex;
-        padding: 0.2rem;
-        justify-content: end;
-        gap: 0.5rem;
-    }
+  .edit-btns-div {
+    display: flex;
+    padding: 0.2rem;
+    justify-content: end;
+    gap: 0.5rem;
+  }
 
-    .edit-btn {
-        background-color: none;
-        outline: none;
-        padding: 0.4rem 0.6rem;
-        border-radius: 0.3rem;
-        border: none;
-        font-size: 1em;
-        cursor: pointer;
-        color: #fff;
-    }
+  .edit-btn {
+    background-color: none;
+    outline: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.3rem;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    color: #fff;
+  }
 
-    .edit-update {
-        background-color: #42a5f5;
-    }
+  .edit-update {
+    background-color: #42a5f5;
+  }
 
-    .edit-cancel {
-        background-color: #ef5350;
-    }
+  .edit-cancel {
+    background-color: #ef5350;
+  }
 
-    .edit-error {
-        color: #ef5350;
-        font-size: 12px;
-    }
+  .edit-error {
+    color: #ef5350;
+    font-size: 12px;
+  }
 
-    .task-creator-dialog[open],
-    .edit-note-dialog[open] {
-        align-self: center;
-        margin-inline: auto;
-        border: none;
-        border-radius: 1rem;
-    }
+  .task-creator-dialog[open],
+  .edit-note-dialog[open] {
+    align-self: center;
+    margin-inline: auto;
+    border: none;
+    border-radius: 1rem;
+  }
 
-    .task-creator-dialog[open]::backdrop,
-    .edit-note-dialog[open]::backdrop {
-        background-color: rgba(0, 0, 0, 0.5);
-    }
+  .task-creator-dialog[open]::backdrop,
+  .edit-note-dialog[open]::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 
-    .task-creator {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-        padding: 1rem;
-    }
+  .task-creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
 
-    #task-input {
-        border: none;
-        outline: none;
-        padding: 1rem;
-        font-size: 2rem;
-        font-weight: 500;
-        border-radius: 0.7rem;
-        width: 70%;
-    }
+  #task-input {
+    border: none;
+    outline: none;
+    padding: 1rem;
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 0.7rem;
+    width: 70%;
+  }
 
-    .create-task-btn {
-        border: none;
-        cursor: pointer;
-        padding: 1rem 2.5rem;
-        font-size: 1rem;
-        font-weight: 500;
-        border-radius: 0.7rem;
-        background-color: #42a5f5;
-    }
+  .create-task-btn {
+    border: none;
+    cursor: pointer;
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.7rem;
+    background-color: #42a5f5;
+  }
 
-    .task-manager {
-        margin: 1rem 0;
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .task-manager {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    .task-list-title {
-        color: #5e35b1;
-        font-weight: 600;
-    }
+  .task-list-title {
+    color: #5e35b1;
+    font-weight: 600;
+  }
 
-    .ongoing-tasks {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        gap: 1rem;
-    }
+  .ongoing-tasks {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 1rem;
+  }
 
-    .curr-task {
-        display: flex;
-        align-items: center;
-        font-size: 1.2rem;
-        gap: 0.5rem;
-    }
+  .curr-task {
+    display: flex;
+    align-items: center;
+    font-size: 1.2rem;
+    gap: 0.5rem;
+  }
 
-    .checkbox {
-        width: 1.1rem;
-        height: 1.1rem;
-        border-radius: 50%;
-        cursor: pointer;
-        appearance: none;
-        -webkit-appearance: none;
-        border: 1.5px solid #c09494;
-        padding: 0.2rem;
-        position: relative;
-    }
+  .checkbox {
+    width: 1.1rem;
+    height: 1.1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1.5px solid #c09494;
+    padding: 0.2rem;
+    position: relative;
+  }
 
-    .checkbox:checked::before {
-        content: "";
-        position: absolute;
-        top: 10%; /* Adjust the position to center the inner circle */
-        left: 10%;
-        width: 80%; /* Size to leave some gap */
-        height: 80%;
-        background-color: #5e35b1;
-        border-radius: 50%;
-    }
+  .checkbox:checked::before {
+    content: "";
+    position: absolute;
+    top: 10%; /* Adjust the position to center the inner circle */
+    left: 10%;
+    width: 80%; /* Size to leave some gap */
+    height: 80%;
+    background-color: #5e35b1;
+    border-radius: 50%;
+  }
 
-    label {
-        font-size: 1.2rem;
-    }
+  label {
+    font-size: 1.2rem;
+  }
 
-    .hr-tag {
-        width: 100%;
-        height: 0.2rem;
-        background-color: #3e2723;
-        border-radius: 0.7rem;
-        outline: none;
-        border: none;
-    }
+  .hr-tag {
+    width: 100%;
+    height: 0.2rem;
+    background-color: #3e2723;
+    border-radius: 0.7rem;
+    outline: none;
+    border: none;
+  }
 
-    .completed-tasks {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
+  .completed-tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
 
-    .finish-task {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 1.2rem;
-    }
+  .finish-task {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+  }
 
-    .span-check::before {
-        color: green;
-        font-weight: 900;
-        font-size: 1rem;
-        content: "\2714";
-    }
+  .span-check::before {
+    color: green;
+    font-weight: 900;
+    font-size: 1rem;
+    content: "\2714";
+  }
 }
